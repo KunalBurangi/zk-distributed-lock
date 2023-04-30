@@ -35,17 +35,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DistributedLock = void 0;
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 const zookeeper = __importStar(require("node-zookeeper-client"));
+const logger_1 = require("./logger");
 class DistributedLock {
-    constructor(zkConnectString, lockPath) {
+    constructor(zkConnectString, lockPath, options) {
         this.zkConnectString = zkConnectString;
         this.lockPath = lockPath;
         this.zkClient = zookeeper.createClient(this.zkConnectString);
+        this.logger = (options != null) && options.logger ? options.logger : logger_1.logger;
         this.ready = this.init();
     }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
             this.zkClient.once('connected', () => {
-                console.log("zk connected");
+                this.logger.info('Distributed Lock initialised');
             });
             yield this.zkClient.connect();
         });
@@ -55,9 +57,11 @@ class DistributedLock {
             yield this.ready;
             this.zkClient.create(this.lockPath, null, zookeeper.CreateMode.EPHEMERAL, (error, lockPath) => {
                 if (error) {
+                    this.logger.error(`Error in acquiring lock on path ${lockPath} error: ${error.message}`);
                     callback(error);
                     return;
                 }
+                this.logger.info(`Lock acquiring successfully on path ${lockPath}`);
                 callback();
             });
         });
@@ -65,13 +69,16 @@ class DistributedLock {
     releaseLock(lockPath, callback) {
         this.zkClient.remove(lockPath, (error) => {
             if (error) {
+                this.logger.error(`Error in releasing lock on path ${lockPath}  error: ${error.message}`);
                 callback(error);
                 return;
             }
+            this.logger.info(`Lock released successfully on path ${lockPath}`);
             callback();
         });
     }
     close() {
+        this.logger.info('Distributed Lock closing connextion');
         this.zkClient.close();
     }
     on(event, listener) {

@@ -17,7 +17,7 @@ dist
 docs
 
 # Testing Reports
-jsLint.html*
+jsLint.html
 mochawesome-report
 coverage
 logs

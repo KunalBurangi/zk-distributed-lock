@@ -1,1 +1,1 @@
-{"version":3,"sources":["../index.ts"],"names":[],"mappings":"AACA,cAAc,cAAc,CAAA","file":"index.d.ts","sourcesContent":["/* eslint-disable import/extensions */\r\nexport * from \"./src/zklock\"\r\n"]}
+{"version":3,"sources":["../index.ts"],"names":[],"mappings":"AACA,cAAc,cAAc,CAAC","file":"index.d.ts","sourcesContent":["/* eslint import/extensions:\"off\" */\r\nexport * from \"./src/zklock\";\r\n"]}
