@@ -1,38 +1,39 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
-import * as zookeeper from "node-zookeeper-client";
-import { logger } from "./logger";
-import { Logger } from "winston";
+import * as zookeeper from 'node-zookeeper-client'
+import { logger } from './logger'
+import { type Logger } from 'winston'
 
 export interface DistributedLockOptions {
-  logger: Logger;
+  logger: Logger
 }
 export class DistributedLock {
-  public readonly zkClient: zookeeper.Client;
-  private readonly zkConnectString: string;
-  private readonly lockPath: string;
-  private readonly ready: Promise<any>;
-  private logger: Logger;
-  constructor(
+  public readonly zkClient: zookeeper.Client
+  private readonly zkConnectString: string
+  private readonly lockPath: string
+  private readonly ready: Promise<any>
+  private readonly logger: Logger
+  constructor (
     zkConnectString: string,
     lockPath: string,
     options?: DistributedLockOptions
   ) {
-    this.zkConnectString = zkConnectString;
-    this.lockPath = lockPath;
-    this.zkClient = zookeeper.createClient(this.zkConnectString);
-    this.logger = options && options.logger ? options.logger : logger;
-    this.ready = this.init();
+    this.zkConnectString = zkConnectString
+    this.lockPath = lockPath
+    this.zkClient = zookeeper.createClient(this.zkConnectString)
+    this.logger = (options != null) && options.logger ? options.logger : logger
+    this.ready = this.init()
   }
 
-  public async init(): Promise<void> {
-    this.zkClient.once("connected", () => {
-      this.logger.info("Distributed Lock initialised");
-    });
+  public async init (): Promise<void> {
+    this.zkClient.once('connected', () => {
+      this.logger.info('Distributed Lock initialised')
+    })
 
-    await this.zkClient.connect();
+    await this.zkClient.connect()
   }
-  public async acquireLock(callback: (error?: Error) => void): Promise<void> {
-    await this.ready;
+
+  public async acquireLock (callback: (error?: Error) => void): Promise<void> {
+    await this.ready
     this.zkClient.create(
       this.lockPath,
       null as any,
@@ -41,18 +42,18 @@ export class DistributedLock {
         if (error) {
           this.logger.error(
             `Error in acquiring lock on path ${lockPath} error: ${error.message}`
-          );
-          callback(error as Error | undefined);
-          return;
+          )
+          callback(error as Error | undefined)
+          return
         }
-        this.logger.info(`Lock acquiring successfully on path ${lockPath}`);
+        this.logger.info(`Lock acquiring successfully on path ${lockPath}`)
 
-        callback();
+        callback()
       }
-    );
+    )
   }
 
-  public releaseLock(
+  public releaseLock (
     lockPath: string,
     callback: (error?: Error) => void
   ): void {
@@ -60,25 +61,26 @@ export class DistributedLock {
       if (error) {
         this.logger.error(
           `Error in releasing lock on path ${lockPath}  error: ${error.message}`
-        );
+        )
 
-        callback(error as Error | undefined);
-        return;
+        callback(error as Error | undefined)
+        return
       }
-      this.logger.info(`Lock released successfully on path ${lockPath}`);
-      callback();
-    });
+      this.logger.info(`Lock released successfully on path ${lockPath}`)
+      callback()
+    })
   }
 
-  public close(): void {
-    this.logger.info(`Distributed Lock closing connextion`);
-    this.zkClient.close();
-  }
-  public on(event: string, listener: (...args: any[]) => void): void {
-    this.zkClient.on(event, listener);
+  public close (): void {
+    this.logger.info('Distributed Lock closing connextion')
+    this.zkClient.close()
   }
 
-  public once(event: string, listener: (...args: any[]) => void): void {
-    this.zkClient.once(event, listener);
+  public on (event: string, listener: (...args: any[]) => void): void {
+    this.zkClient.on(event, listener)
+  }
+
+  public once (event: string, listener: (...args: any[]) => void): void {
+    this.zkClient.once(event, listener)
   }
 }

@@ -6,7 +6,7 @@ import { logger } from "../../logger";
 export class MyClass {
   private lock: DistributedLock;
   private readonly lockPath: string = "/my-lock";
-  public response: string = "initial";
+  public response = "initial";
   constructor(zkConnectString: string) {
     this.lock = new DistributedLock(zkConnectString, this.lockPath);
     this.lock.on("connected", () => {

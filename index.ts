@@ -1,2 +1,2 @@
-/* eslint-disable import/extensions */
-export * from "./src/zklock"
+/* eslint import/extensions:"off" */
+export * from "./src/zklock";
