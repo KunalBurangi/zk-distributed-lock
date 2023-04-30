@@ -1,0 +1,23 @@
+
+info: Distributed Lock initialised
+info: ZooKeeper client connected
+info: Lock acquiring successfully on path /my-lock
+info: Lock released successfully on path /my-lock
+info: Distributed Lock initialised
+info: ZooKeeper client connected
+info: Distributed Lock initialised
+info: ZooKeeper client connected
+info: Lock acquiring successfully on path /my-lock
+error: Error in acquiring lock on path undefined error: Exception: NODE_EXISTS[-110]
+info: Lock released successfully on path /my-lock
+info: Distributed Lock initialised
+info: ZooKeeper client connected
+info: Lock acquiring successfully on path /my-lock
+info: Lock released successfully on path /my-lock
+info: Distributed Lock initialised
+info: ZooKeeper client connected
+info: Distributed Lock initialised
+info: ZooKeeper client connected
+info: Lock acquiring successfully on path /my-lock
+error: Error in acquiring lock on path undefined error: Exception: NODE_EXISTS[-110]
+info: Lock released successfully on path /my-lock

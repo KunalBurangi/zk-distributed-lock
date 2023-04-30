@@ -1,3 +1,4 @@
+// tsconfig.json
 {
   "compilerOptions": {
     "target": "es6",
@@ -11,13 +12,9 @@
     "noUnusedLocals": true,
     "outDir": "dist",
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+    "esModuleInterop": true,
   },
-  "include": [
-    "src/**/*.ts",
-    "index.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*","index.ts"],
+  "exclude": ["node_modules", "src/__test__"]
 }

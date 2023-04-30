@@ -1,0 +1,25 @@
+# dependencies
+node_modules
+logs
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea
+*.swp
+*.swo
+
+# build
+dist
+
+# Documentation
+docs
+
+# Testing Reports
+jsLint.html*
+mochawesome-report
+coverage
+logs
+.nyc_output
+jsLint.html
