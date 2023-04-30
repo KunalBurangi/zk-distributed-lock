@@ -15,7 +15,14 @@
 
 ### Removed
 
-###### Dec 15, 2022
+###### APRIL 30, 2023
+
+## [Version 1.0.0-beta.2]()
+
+- Added:
+  - Added Lock Unlock functionality
+
+###### APRIL 30, 2023
 
 ## [Version 1.0.0-beta.2]()
 
