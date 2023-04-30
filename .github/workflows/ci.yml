@@ -58,16 +58,3 @@ jobs:
 
       - name: Lint
         run: npm run lint:fix
-
-  release:
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm i
-
-      - name: Release
-        run: npm publish
