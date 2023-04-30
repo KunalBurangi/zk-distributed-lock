@@ -1,1 +1,0 @@
-{"version":3,"sources":["../index.ts"],"names":[],"mappings":"AACA,cAAc,cAAc,CAAC","file":"index.d.ts","sourcesContent":["/* eslint import/extensions:\"off\" */\r\nexport * from \"./src/zklock\";\r\n"]}
