@@ -22,4 +22,5 @@ mochawesome-report
 coverage
 logs
 .nyc_output
-jsLint.html
+mochawesome.html*
+mochawesome.json
