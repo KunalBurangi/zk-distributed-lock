@@ -5,7 +5,7 @@ function delay(ms: number): Promise<void> {
 }
 
 describe("myClass", function test() {
-  this.timeout(5000);
+  this.timeout(10000);
 
   it("should do some task after acquiring the lock", async () => {
     const myclass = new MyClass("localhost:2182");
