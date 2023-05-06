@@ -1,19 +1,15 @@
-# What's new in lbSave
+# What's new in zk-distributed-lock
 
 # Release 2302
 
 ## Overview
 
-### Added
+###### MAY 6, 2023
 
-### Changed
+## [Version 1.0.0]()
 
-- Dependency updates
-- NodeJs version update to 18
-
-### Bugfixes
-
-### Removed
+- Added:
+  - Added option to retry functionality
 
 ###### APRIL 30, 2023
 

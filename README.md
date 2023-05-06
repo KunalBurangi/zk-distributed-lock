@@ -2,8 +2,8 @@
   ZK-Distributed-Lock
 </h1>
 
-
 ## Description
+
 [![pipeline status]()
 [![coverage report]()
 
@@ -12,6 +12,7 @@ The Project Allows you to acquire lock and to the task while other resources won
 
 Read more about zookeeper at.
 https://zookeeper.apache.org/
+
 ## Contents
 
 - [Description](#description)
@@ -26,27 +27,36 @@ https://zookeeper.apache.org/
 ## Getting_Started
 
 ### Prerequisites
+
 This project requires Node.js 10 or later.
 
-
 ## Install
+
 Install all required packages with
+
 ```
 npm i zk-distributed-lock
 ```
+
 Now compile the typescript code:
+
 ```
 npm run build
 ```
+
 ## Usage
+
 Create an instance of the DistributedLock class
+
 ```
   this.lock = new DistributedLock(zkConnectString, this.lockPath);
 
 ```
+
 Register the events handler if you want.
 
 Acquire and release the lock the Lock,
+
 ```
     await this.lock.acquireLock( (error) => {
       if (error) {
@@ -73,6 +83,16 @@ Acquire and release the lock the Lock,
     });
 ```
 
+Optional parameter
+
+```
+ const optionsRetry:DistributedLockOptions = {
+    logger: logger, // your custom logger
+    retryCount: 2, // number of times it should retry. put  0 is default
+    retryAfter: 2000 , // time in miliseconds between retries.  0 is default
+  };
+```
+
 After this even if multiple Instances of your applications are running still only one resource will be able to acquire the lock.
 
 ## Testing
@@ -83,27 +103,38 @@ npm run test:exit
 ```
 
 ### Unit Tests
+
 Unit tests are using
-* [Mocha](https://www.npmjs.com/package/mocha) as framework
-* [chai](https://www.npmjs.com/package/chai) as assertion library
-* [nyc](https://www.npmjs.com/package/nyc) for test coverage detection.
+
+- [Mocha](https://www.npmjs.com/package/mocha) as framework
+- [chai](https://www.npmjs.com/package/chai) as assertion library
+- [nyc](https://www.npmjs.com/package/nyc) for test coverage detection.
 
 In order to run just the mocha tests, use
+
 ```
 npm run test
 ```
+
 In order both run unit tests and test coverage detection, use:
+
 ```
 npm run test:ci
 ```
+
 Both command will automatically build the project before testing. Unit test results are reported by [mochawesome](https://www.npmjs.com/package/mochawesome) in html format and stored in the root folder under /mochawesome-report.
 The coverage report can be found in html format in /coverage
 
+Note : You need to have zookeeper running.
+Here's a docker image this i use
+
+```
+docker run --name my-zookeeper -p 2182:2181 -d zookeeper
+```
 
 ## Team
 
 - Kunal Burangi [(@Kunal Burangi)](https://github.com/KunalBurangi/)
-
 
 ## License
 

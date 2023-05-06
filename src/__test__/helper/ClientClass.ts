@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DistributedLock } from "../../zklock";
+import { DistributedLock, DistributedLockOptions } from "../../zklock";
 import { logger } from "../../logger";
 
 export class MyClass {
   private lock: DistributedLock;
   private readonly lockPath: string = "/my-lock";
   public response = "initial";
-  constructor(zkConnectString: string) {
-    this.lock = new DistributedLock(zkConnectString, this.lockPath);
+  constructor(zkConnectString: string, options?: DistributedLockOptions) {
+    this.lock = new DistributedLock(zkConnectString, this.lockPath, options);
     this.lock.on("connected", () => {
       logger.info("ZooKeeper client connected");
     });

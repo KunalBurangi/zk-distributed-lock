@@ -1,6 +1,6 @@
 {
   "name": "zk-distributed-lock",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,9 @@
     "audit": "npm audit",
     "audit:fix": "npm audit fix",
     "test": "mocha -r ts-node/register --allow-console-logs --reporter mochawesome src/__test__/*.unit.ts",
+    "testDebug": "mocha -r ts-node/register --inspect --allow-console-logs --reporter mochawesome src/__test__/*.unit.ts",
     "test:exit": "npm run test -- --exit",
+    "testDebug:exit": "npm run testDebug -- --exit",
     "test:ci": "nyc -r lcov -r text npm run test",
     "test:ciexit": "nyc -r lcov -r text npm run test:exit"
   },
