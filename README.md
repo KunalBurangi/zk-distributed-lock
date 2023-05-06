@@ -4,7 +4,7 @@
 
 ## Description
 
-[![pipeline status]()
+[![pipeline status](https://github.com/github/docs/actions/workflows/ci.yml/badge.svg)
 [![coverage report]()
 
 This project implements a Distributed Lock system using Zookeeper.
